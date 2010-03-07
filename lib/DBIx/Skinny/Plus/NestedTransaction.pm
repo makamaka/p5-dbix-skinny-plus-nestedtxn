@@ -23,8 +23,6 @@ sub import {
 
 
 BEGIN {
-    local $^W;
-    no warnings;
 
     sub txn_scope {
         DBIx::Skinny::Transaction->new( @_ );
