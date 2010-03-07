@@ -1,0 +1,68 @@
+DBIx::Skinny::Plus::MultiPK version 0.01
+========================
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+NAME
+    DBIx::Skinnyy::Plus::NestedTransaction - deal with nested transaction
+
+SYNOPSIS
+        #
+        package Your::Model;
+        use DBIx::Skinny setup => +{
+            dsn => 'dbi:SQLite:',
+            username => '',
+            password => '',
+            connect_options => { AutoCommit => 1 },
+        };
+        use DBIx::Skinny::Plus::NestedTransaction;
+    
+        package main;
+    
+        use Your::Model;
+    
+        my $txn   = Your::Model->txn_scope;
+        {
+            my $txn2 = Your::Model->txn_scope;
+            eval q{ Your::Model->insert('a_table',{ name => 'foo' }) };
+            if ( $@ ) {
+                $txn2->rollback;
+            }
+            else {
+                $txn2->commit;
+            }
+        }
+        eval q{ Your::Model->insert('some_table',{ name => 'bar' }) };
+    
+        $txn->commit unless $@;
+
+DESCRIPTION
+    DBIx::Skinny does not deal with nested transaction.
+
+    Using this module enable you to do it.
+
+    Use this module after "use DBIx::Skinny" in your model class.
+
+ADDITIONAL
+    "txn_begin", "txn_commit", "txn_rollback" methods call "profiler" for
+    logging transactions.
+
+SEE ALSO
+    DBIx::Skinny
+
+AUTHOR
+    Makamaka Hannyaharamitu, <makamaka[at]cpan.org>
+
+COPYRIGHT AND LICENSE
+    Copyright 2010 by Makamaka Hannyaharamitu
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
