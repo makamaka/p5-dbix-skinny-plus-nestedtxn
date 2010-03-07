@@ -1,4 +1,4 @@
-DBIx::Skinny::Plus::MultiPK version 0.01
+DBIx::Skinny::Plus::NestedTransaction version 0.01
 ========================
 
 INSTALLATION
@@ -52,7 +52,7 @@ DESCRIPTION
 
 ADDITIONAL
     "txn_begin", "txn_commit", "txn_rollback" methods call "profiler" for
-    logging transactions.
+    logging SQL statements.
 
 SEE ALSO
     DBIx::Skinny

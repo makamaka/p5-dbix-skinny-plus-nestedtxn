@@ -133,7 +133,7 @@ Use this module after C<use DBIx::Skinny> in your model class.
 
 =head1 ADDITIONAL
 
-C<txn_begin>, C<txn_commit>, C<txn_rollback> methods call C<profiler> for logging transactions.
+C<txn_begin>, C<txn_commit>, C<txn_rollback> methods call C<profiler> for logging SQL statements.
 
 =head1 SEE ALSO
 
