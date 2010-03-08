@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Carp ();
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 sub import {
@@ -66,7 +66,7 @@ BEGIN {
             return;
         }
 
-        $class->profiler("COMMI WORK");
+        $class->profiler("COMMIT WORK");
         eval { $class->dbh->commit } or Carp::croak $@;
         $class->txn_end;
     }
